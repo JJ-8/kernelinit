@@ -73,6 +73,16 @@ def create_files(runfile: RunFile, args: argparse.Namespace):
     except OSError:
         pass
 
+    try:
+        shutil.copy(os.path.join(TEMPLATES_DIR, 'compress.sh'), './compress.sh')
+    except OSError:
+        pass
+
+    try:
+        shutil.copy(os.path.join(TEMPLATES_DIR, 'decompress.sh'), './decompress.sh')
+    except OSError:
+        pass
+
     if not args.no_vmlinux:
         threading.Thread(target=extract_vmlinux, args=(runfile,)).start()
 
